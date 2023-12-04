@@ -1,12 +1,11 @@
 interface TableRowProps {
-    columnsLength: number;
-    data: Array<String>;
+    data: String[];
 }
 
-export function TableRow({columnsLength, data}: TableRowProps) {
+export function TableRow({data}: TableRowProps) {
     return (
-        <tr>
-            {data.slice(columnsLength).map(item => <td className='px-2 py-1'>{item || ''}</td>)}
+        <tr className='h-1'>
+            { data.map((item, i) => <td key={i} className='px-2 py-1'>{item || ''}</td>) }
         </tr>
     )
 }

@@ -1,11 +1,18 @@
 import './App.css'
-import { Calculator } from './components/Calculator'
+
 import { useEffect } from 'react'
+import { Calculator } from './components/Calculator'
+import { Table } from './components/Table'
+import { Graph } from './components/Graph'
+import { useMatrix } from './hooks/useMatrix'
 
 function App() {
 
-  useEffect(() => {
+  const btcMatrix = useMatrix([{time: 'sup', usd: 'oop', eur: 'eep'}], 3, 5)
+  const ethMatrix = useMatrix([], 4, 5)
 
+  useEffect(() => {
+    console.log('btcMatrix', btcMatrix)
   }, [])
 
   return (
@@ -15,7 +22,7 @@ function App() {
           CryptoCurrency Dashboard
         </h1>
         <section className='flex my-4'>
-
+          <Graph />
           <Calculator />
         </section>
         <section className='flex justify-around my-4'>
@@ -23,44 +30,8 @@ function App() {
           <p className='text-slate-50 font-bold'>1 ETH = 392.93 USD</p>
         </section>
         <section className='flex justify-around'>
-          <table>
-            <tr>
-              <th>Time</th>
-              <th>USD</th>
-              <th>EUR</th>
-              <th>BTC</th>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-            <tr>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-            </tr>
-          </table>
+          <Table columns={['Time', 'USD', 'EUR']} data={btcMatrix}/>
+          <Table columns={['Time', 'USD', 'EUR', 'BTC']} data={ethMatrix}/>
         </section>
       </main>
     </div>

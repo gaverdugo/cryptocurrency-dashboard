@@ -12,9 +12,15 @@ interface State {
 export const useStore = create<State>()((set) => {
     return {
         rates: {
-            btc: 0,
-            eth: 0,
-            eur: 0
+            btc: {
+                usd: 0,
+                eur: 0
+            },
+            eth: {
+                usd: 0,
+                eur: 0,
+                btc: 0
+            }
         },
         history: [],
         maxHistoryLength: 10,
