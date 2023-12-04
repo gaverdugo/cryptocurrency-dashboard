@@ -8,7 +8,7 @@ import { useMatrix } from './hooks/useMatrix'
 
 function App() {
 
-  const btcMatrix = useMatrix([{time: 'sup', usd: 'oop', eur: 'eep'}], 3, 5)
+  const btcMatrix = useMatrix([], 3, 5)
   const ethMatrix = useMatrix([], 4, 5)
 
   useEffect(() => {
