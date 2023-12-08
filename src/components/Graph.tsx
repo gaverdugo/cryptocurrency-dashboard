@@ -1,36 +1,33 @@
-import { VictoryChart, VictoryGroup, VictoryLine } from 'victory'
+import { VictoryAxis, VictoryChart, VictoryGroup, VictoryLabel, VictoryLine, VictoryScatter, VictoryTheme } from 'victory'
+import { useStore } from '../store';
 
 export function Graph() {
-    const chartTheme = {
-        axis: {
-          style: {
-            tickLabels: {
-              fill: 'white'
-            }
-          }
-        }
-      }
+
+  const {btcHistory, ethHistory} = useStore()
+
+  const formatDate = (time: Date) => {
+    const hours = ("0" + time.getHours()).slice(-2)
+    const minutes = ("0" + time.getMinutes()).slice(-2)
+    const seconds = ("0" + time.getSeconds()).slice(-2)
+
+    return `${hours}:${minutes}:${seconds}`
+  }
+
+  const btcData = btcHistory.map((o: any) => ({x: formatDate(o.time), y: Number(o.usd)}))
+  const ethData = ethHistory.map((o: any) => ({x: formatDate(o.time), y: Number(o.usd)}))
+
     return (
-        <VictoryChart domain={{y:[0, 5500]}} theme={chartTheme}>
-            <VictoryGroup colorScale={"qualitative"}>
-              <VictoryLine data={[
-                {x: 1, y: 3000},
-                {x: 2, y: 4000},
-                {x: 3, y: 2000},
-                {x: 4, y: 4000},
-                {x: 5, y: 5000},
-                {x: 5.3, y: 5050}
-              ]}></VictoryLine>
-              <VictoryLine data={[
-                {x: 1, y: 200},
-                {x: 2, y: 500},
-                {x: 3, y: 700},
-                {x: 4, y: 600},
-                {x: 5.1, y: 300},
-                {x: 5.2, y: 340},
-                {x: 5.5, y: 347},
-              ]}></VictoryLine>
+        <VictoryChart padding={{top: 50, bottom: 70, left: 70, right: 50}} theme={VictoryTheme.material}>
+            <VictoryAxis tickLabelComponent={<VictoryLabel angle={315} y={310} textAnchor="end"/>}/>
+            <VictoryAxis dependentAxis/>
+            <VictoryGroup data={btcData.reverse()}>
+              <VictoryLine style={{data: {stroke: '#CA3C25'}}} />
+              <VictoryScatter style={{data: {fill: '#F95738'}}} />
             </VictoryGroup>
-          </VictoryChart>
+            <VictoryGroup data={ethData.reverse()}>
+              <VictoryLine style={{data: {stroke: '#086005F'}}} />
+              <VictoryScatter style={{data: {fill: '#A2AD59'}}} />
+            </VictoryGroup>
+        </VictoryChart>
     )
 }
