@@ -8,4 +8,4 @@ Technical Assessment Exercise for Tango.io
 
 ## Live demo
 
-Live demo can be seen (here)[https://cryptocurrency-dashboard-gaverdugo.vercel.app].
+Live demo can be seen [here](https://cryptocurrency-dashboard-gaverdugo.vercel.app).
