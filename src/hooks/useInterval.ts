@@ -1,4 +1,4 @@
-// basically Dan Abramov's hook 
+// basically Dan Abramov's hook https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 
 import { useEffect, useRef } from "react";
 
