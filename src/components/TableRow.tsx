@@ -5,14 +5,14 @@ interface TableRowProps {
 export function TableRow({data}: TableRowProps) {
     
     const localeOptions = {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
         hour12: false
-    }
+    } as const
 
     return (
         <tr className='h-1'>
